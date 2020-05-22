@@ -1,0 +1,74 @@
+1. Run   venev windows command inside project folder 
+    command ::  virtualenv <venv_name> 
+    Eg      ::  (..relativepath)\Django_Project>virtualenv env
+
+2. Activate venev in Project folder  with below command
+    command ::  env\Scripts\activate.bat
+    eg      :: (..relativepath)\Django_Project>env\Scripts\activate.bat
+
+3. install Requried Pakages inside  you venev
+    commnad :: pip install <package_name>
+    eg      :: (env) (..relativepath)\Django_Project>pip install -U Django
+
+
+4. Store installed packages in requirements.txt file 
+    commnad :: pip3 freeze > <file_name.txt>
+    eg      :: (env) (..relativepath)\Django_Project>pip freeze >  requirements.txt
+
+
+====================================================================================================================
+
+5. start django project wthe belwo command
+    command :: django-admin startproject <project_name>
+    eg      :: (env) (..relativepath)\Django_Project>django-admin startproject Day1
+
+6. to run server
+    command  :: python manage.py runserver
+
+7. we can get app folder with below command
+     command :: python manage.py startapp <app_name>
+     eg      :: python manage.py startapp test_app
+
+=======================================================================================================================
+
+8. testapp gives pre-folder defined Folder Structure
+    ie that folder has 6 .py files
+
+9.  add application to django project  in setting.py file
+    ie ...  add test_app folder in settings.py file
+            in settings.py file  inside  INSTALLED_APPS list varibale add test_app application
+    
+    eg  :: INSTALLED_APPS = [
+                                'django.contrib.admin',
+                                'django.contrib.auth',
+                                'django.contrib.contenttypes',
+                                'django.contrib.sessions',
+                                'django.contrib.messages',
+                                'django.contrib.staticfiles',
+                                'test_app'
+                            ]
+
+======================================================================================================================
+
+9. views.py 
+
+        HTTP Request  ==>    business_logic  in views.py file    ====> HTTP Response
+
+10.  urls.py
+        url can be used by the end user to send  request  to our view function
+        http://host:port/url ==> if we call like this the url will call respective view and implenet business logic
+
+11. Run Your First Application ::
+        in venv                ::  python manage.py runserver 1234
+        go to browser and type ::  http://127.0.0.1:1234/hello/    
+
+=======================================================================================================================
+
+12. Repeating all steps once more don't confuse :: 
+        1. start project
+        2. start application
+        3. add this applicationto the project in settings.py file
+        4. define view function inside views.py
+        5. define url pattern for our view function inside urls.py
+        6. runserver
+        7. send request
