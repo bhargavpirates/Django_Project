@@ -72,3 +72,13 @@
         5. define url pattern for our view function inside urls.py
         6. runserver
         7. send request
+
+==========================================================================================================================
+
+13. we can craete multiple function in  view.py and those  function  method in urls.py
+
+======================================================================================================================
+
+14. HOw to define url pattern at application level instaed of project level ?
+     a. create a  seperate urls.py file at application level
+     b. include this application level urls.py to project level urls.py
