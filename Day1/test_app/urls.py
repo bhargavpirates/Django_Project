@@ -6,4 +6,6 @@ urlpatterns = [
     url(r'^hello/', views.hello_world_view),
     url(r'^firstview/', views.first_view),
     url(r'^secondview/', views.second_view),
+    url(r'^templateview/', views.template_view),
+    url(r'^wish/', views.wish),
 ]

@@ -62,6 +62,13 @@
         in venv                ::  python manage.py runserver 1234
         go to browser and type ::  http://127.0.0.1:1234/hello/    
 
+12.  for home page if we what some display then
+     ie.. if we type this URL :  https://host:port/ we what some page then in urls.py use below line :: url(r'^$/', views.method)
+
+     eg   ::  urlpatterns = [
+                                url(r'^admin/', admin.site.urls),
+                                url(r'^$/', views.method),
+                            ]
 =======================================================================================================================
 
 12. Repeating all steps once more don't confuse :: 
@@ -82,3 +89,131 @@
 14. HOw to define url pattern at application level instaed of project level ?
      a. create a  seperate urls.py file at application level
      b. include this application level urls.py to project level urls.py
+
+=======================================================================================================================
+
+Templete : 
+    Templete is nothing but HTML file
+    so view is business Logic and template is our view/presentation
+    TEMPLETE is used by view Function 
+
+15. Repeating all steps once more when we want to use TEMPLATES so,please don't confuse  :: 
+        1. start project
+        2. start application
+        3. create Templates folder in our main project folder
+                a. In that template folder create a seperated folder with application name
+                b. In that folder we have craete our HTML files(Template Files)
+        4. add this applicationto the project in settings.py file
+                a. add template folder  path inside settings.py
+        5. define view function inside views.py
+        6. define url pattern for our view function inside urls.py
+        7. runserver
+        8. send request
+
+   structure:: 
+        Day1(main Project Folder)
+            Templates(folder)
+            manage.py
+            Day1(project folder)
+            test_app(application)
+
+======================================================================================================================
+
+16.  add template folder  path inside settings.py
+        add below line  in settings.py file 
+            
+            TEMPLATES_DIR=os.path.join(BASE_DIR,"templates")
+
+        add TEMPLATES_DIR varible in TEMPLATES json varible inside  DIR list
+
+            TEMPLATES = [
+                            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                            'DIRS': [TEMPLATES_DIR],
+                            ........ etc
+                        ]
+
+
+====================================================================================================================
+
+client ==> server ==> urls.py ==> views.py <--> templatefile
+   ^
+   |                                |
+   |                                |
+   |--------------------------------|
+
+   ======================================================================================================================
+
+
+17. how to inject  Dynamic Content  from view function to Template File ?
+       with the help of Template Tags  and Template Variables
+       View Function ===> Template Tags  ==>  Template File
+    
+        in view we use dictory  and call dictory varible in template file using template tag    
+        put this line in template_ file  :: Template Tag == {{varible}}
+
+ 
+ ===========================================================================================================================
+
+ Django Framework :: MVT 
+
+ M :: Model         (Business Logic)
+ V :: View          (DataBase Logic)
+ T :: Template      (Presentation (html,css))
+
+
+ client <==>  Django(Acts as Controller )  <==>  views   <--> Model
+                                                 views   <--> Template
+
+===========================================================================================================================
+
+17. Template Files
+    ---------------
+    Basic Idea
+
+    To use css files in our templates
+    to use images in our template files
+    Static Files
+
+    QUESTION.  how to use Normal Template ?
+
+        1. create folder with respective structure 
+            eg :: templates/testapp/*.html
+        2. add templates  folder path inside settings.py
+        3. to send content dynamically from view to template we have used {{varible}} ==> template Tags
+            eg :: {{msg}} --> Template Tags
+    
+        4. Advanced version of Template Tag is denoted as {%   %}
+            eg :: {%   %} --> Jinga2 Template Tag language
+            with this advanced Tag we can do processing also
+
+
+    Working with Static Files:
+    --------------------------
+
+    1. create a folder named with 'static'
+    2. create another folder named with 'images'
+
+    Note: in static folder we can keep :: images Folder,css folder,videos folder
+    
+    Structure:
+        project
+            static
+                images
+                    img1.png
+                    img2.png
+                videos
+                    vid1.mp4
+                    vid2.mp4
+                css
+                    file1.css
+                    file2.css
+     
+     3. attach static folder in setting.py as below::
+        a. STATIC_DIR=os.path.join(BASE_DIR,"static")
+        b. STATICFILES_DIRS=[STATIC_DIR,]
+
+     4.  now go to Template folder and to particular html file and  images like below
+        a. below to <!DOCTYPE html> line ie ..... in 2nd line of .html file add belwo line
+                {% load static %}
+        b. add that img tag n Body of HTML like below.....
+                <img src="{%static "/images/soccer-neymar-brazilian-paris-saint-germain-f-c-wallpaper-preview.jpg" %}" alt="">

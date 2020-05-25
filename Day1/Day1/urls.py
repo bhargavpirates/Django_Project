@@ -28,4 +28,5 @@ from test_app import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^testapp/',include('test_app.urls')),
+    url(r'^$',views.wish),
 ]
