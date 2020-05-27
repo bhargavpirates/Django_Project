@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static "/css/news.css" %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid" align="center">
+            <div class="container">
+                <h1 class="display-4">{{msg}}</h1>
+                <p class="lead">Time : {{date}}</p>
+                <a class="btn btn-primary btn-lg" href="/movies" role="button">Movie News</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary btn-lg" href="#" role="button">Sports News</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary btn-lg" href="#" role="button">Political News</a>&nbsp;&nbsp;&nbsp;
+            </div>
+      </div>
+    </div>
+</body>
+</html>

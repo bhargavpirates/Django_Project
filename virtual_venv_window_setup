@@ -217,3 +217,161 @@ client ==> server ==> urls.py ==> views.py <--> templatefile
                 {% load static %}
         b. add that img tag n Body of HTML like below.....
                 <img src="{%static "/images/soccer-neymar-brazilian-paris-saint-germain-f-c-wallpaper-preview.jpg" %}" alt="">
+
+
+================================================================================================================================
+
+Working with  MODELS and Databases ::
+-------------------------------------
+
+DataBase Configuration:
+-----------------------
+DEfault DAtabase Configuration in settings.py File
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+Database connection throgh cli:
+1. py manage.py shell
+    1. then go to CLi  and check DATABASE connection
+        below commnads do that :
+            a.from django.db import connection
+            b.c=connection.cursor()
+
+
+MODEL.py
+--------
+using Model class we can create tables in DATABASE
+** NOTE :: not sure abiut this point ****** without MOdel we cannot create database
+
+
+Modelclass contain Table_Name and column_names,columns_behivour
+
+Here TWO OPERATIONs we need to do:
+1. converting Python  MODEL_class code into Sql code?  ---> using  MAKEMIGRATIONS command
+2. HOw to Execute that SQL code?                       ---> using   MIGRATE commnad
+
+3. if we want to sql code                              ---> py manage.py sqlmigrate application 0001
+
+Commands:
+---------
+(env) C:\Users\AG58855\Downloads\Django_Project\Day3\db_conn>   py manage.py makemigrations
+(env) C:\Users\AG58855\Downloads\Django_Project\Day3\db_conn>   py manage.py sqlmigrate testapp 0001
+(env) C:\Users\AG58855\Downloads\Django_Project\Day3\db_conn>   py manage.py migrate
+
+Q.  when we are using  "" py manage.py migrate ""  what wiill happen ?
+A.  multiple tables gets created
+    
+Q. what wre advnatages of creating table using MIGRATE compared to  "" create table   ...  "" Explict sql statements?
+A. when we use "" MIGRATE ""  remaning inbulit application will get updated
+    eg :: Operations to perform:
+            Apply all migrations: admin, auth, contenttypes, sessions, testapp
+
+
+
+======================================================================================================================
+
+ADMIN related Stuff:
+---------------------
+
+1. we have  to register  our Model  to the admin  inside admin.py to dispaly in admin Interface
+
+    admin.py :
+    ----------
+    import application.models import modelname
+    admin.site.register(Tablename)
+
+    eg ::  import testapp.models import Employee
+        admin.site.register(Employee)
+
+
+2. to Display entire table in admin page then we need to register our model in admin interface ::
+
+    1. use below steps:
+    -------------------
+        class TableNameAdmin(admin.ModelAdmin):
+            list_display=[give requried column names to display in admin page]
+
+        admin.site.register(TableName,TableNameAdmin)
+
+        Eg:
+        ===
+            class EmployeeAdmin(admin.ModelAdmin):
+                list_display=['id','eno','ename','esal','eaddr']
+            admin.site.register(Employee,EmployeeAdmin)
+
+
+How to open  admin interface ?
+--------------------------------
+using  superuser
+    1. in the admin interface  we can check our created table
+    2. we can perform  CURD  Operations on that table
+
+commnads  ::  python manage.py createsuperuser
+              then give username,emailID,password
+
+admin_url :: https://localhost:port/admin
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+DATABASE CREATION all steps:(model class,admin)
+------------------------------------------------
+1. Define Model class
+2. make migrations
+3. migrate
+4. register model to admin interface in admin.py
+5. create superuser
+6. open admin interface
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+Q. How to generate Fake data in Django Tables ?
+A. using Faker Module
+   Faker Model --> used to generate Fake DAta
+
+    eg : 
+        1.  from faker import Faker
+        2.  fake  =  Faker()
+        3.  print("Employee Name : ",fake.name() )
+
+        from faker import Faker
+        fake=Faker()
+        for i in range(100):
+            print("Employee Name : ",fake.name() )
+            print("Employee firstName : ",fake.first_name() )
+            print("Employee lastName : ",fake.last_name() )
+            print("Employee date : ",fake.date() )
+            print("Employee num : ",fake.random_number(5) )
+            print("Employee email : ",fake.email() )
+            print("Employee salary : ",fake.random_int(min=0,max=99999) )
+            print("Employee position : ",fake.random_element( elements = ("software engineer","project lead", "project manager") ))
+
+
+MYSQL DATBASE:
+----------------
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.MYSQL',
+        'NAME': 'database name',
+        'USER' : 'root',
+        'PASSWORD' : 'root',
+        'HOST': 127.0.0.1,
+        'PORT': 3306
+    }
+}
