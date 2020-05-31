@@ -375,3 +375,33 @@ DATABASES = {
         'PORT': 3306
     }
 }
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+FULL Application Steps:
+-----------------------
+
+1. start project
+2. start app
+3. templates --> testapp --> html files
+4. static --> css --> demo.css
+5. static --> images --> *.jpg
+6. settings.py
+        add applications
+        add template folderpath
+        add static folder path
+
+7. models.py
+    class Tbalename(moels.Model):
+        field declarations
+8. makemigrations
+9. migrate
+10. register this model to the admin inside admin.py
+11. create superuser
+12. check in the admin interface whether our tables are reflecting or not
+
+13. populate our tables with requried records
+     using faker modeule
+
+14. views.py
